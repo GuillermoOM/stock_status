@@ -17,8 +17,6 @@ else:
     soup = BeautifulSoup(response.content, "html.parser")
 
     print(f"Response OK?: {response.ok}")
-    # print(response.status_code)
-    # print(soup.prettify())
     print(f"Page Title: {soup.html.head.title.string}")
 
     result = ""
