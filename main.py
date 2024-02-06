@@ -33,10 +33,10 @@ else:
             result = f"Size In Stock!"
             print(f"\n\033[92m{result}\033[0m")
 
-        # else:
-        #     notification_type = "warning"
-        #     result = f"Size NOT In Stock!"
-        #     print(f"\n\033[31m{result}\033[0m")
+        else:
+        #    notification_type = "warning"
+            result = f"Size NOT In Stock!"
+            print(f"\n\033[31m{result}\033[0m")
 
     else:
         send_notification = True
