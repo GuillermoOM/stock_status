@@ -21,30 +21,34 @@ else:
 
     result = ""
     notification_type = ""
+    send_notification = False
 
     if (soup.html.head.title.string != "Access Denied" and response.ok):
 
         size_found = soup.find("a", attrs={"aria-label":"Size L "})
 
         if size_found:
+            send_notification = True
             notification_type = "success"
             result = f"Size In Stock!"
             print(f"\n\033[92m{result}\033[0m")
 
-        else:
-            notification_type = "warning"
-            result = f"Size NOT In Stock!"
-            print(f"\n\033[31m{result}\033[0m")
+        # else:
+        #     notification_type = "warning"
+        #     result = f"Size NOT In Stock!"
+        #     print(f"\n\033[31m{result}\033[0m")
 
     else:
+        send_notification = True
         notification_type = "error"
         result = "Error: Access Denied!"
         print(f"\n\033[31m{result}\033[0m")
 
-    requests.post('https://api.mynotifier.app',
-                    {
-                    "apiKey": api,
-                    "message": result,
-                    "description": "Steelers Jersey Status",
-                    "type": notification_type,
-                    })
+    if send_notification:
+        requests.post('https://api.mynotifier.app',
+                        {
+                        "apiKey": api,
+                        "message": result,
+                        "description": "Steelers Jersey Status",
+                        "type": notification_type,
+                        })
